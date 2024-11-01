@@ -38,6 +38,30 @@ namespace MathForGamesDemo
                     actor.Start();
 
                 actor.Update(deltaTime);
+                if (actor.Collider != null)
+                    actor.Collider.Draw();
+            }
+
+            // Check for collision
+            for (int row = 0; row < _actors.Count; row++)
+            {
+                for (int column = row; column < _actors.Count; column++)
+                {
+                    // Don't check collision against self
+                    if (row == column)
+                        continue;
+                    // If both colliders are valid
+                    if (_actors[row].Collider != null && _actors[column].Collider != null)
+                    {
+                        // Check collision
+                        if(_actors[row].Collider.CheckCollision(_actors[column]))
+                        {
+                            _actors[row].OnCollision(_actors[column]);
+                            _actors[column].OnCollision(_actors[row]);
+                        }
+                    }
+
+                }
             }
         }
 

@@ -11,9 +11,12 @@ namespace MathForGamesDemo
     internal class TestActor : Actor
     {
         public float Speed { get; set; } = 50;
+
+        private Color _color = Color.Blue;
         public override void Update(double deltaTime)
         {
             base.Update(deltaTime);
+
 
             // Movement 
             Vector2 movementInput = new Vector2();
@@ -26,7 +29,11 @@ namespace MathForGamesDemo
             if (deltaMovement.Magnitude !=0)
             Transform.Translate(deltaMovement);
 
-            Raylib.DrawRectangleV(Transform.GlobalPositon, Transform.GlobalScale * 100, Color.Blue);
+            Raylib.DrawCircleV(Transform.GlobalPositon, Transform.GlobalScale.x / 2 * 100, _color);
+        }
+        public override void OnCollision(Actor other)
+        {
+            _color = Color.Red;
         }
     }
 }
