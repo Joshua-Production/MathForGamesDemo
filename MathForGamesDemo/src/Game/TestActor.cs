@@ -17,7 +17,7 @@ namespace MathForGamesDemo
         {
             base.Update(deltaTime);
 
-
+            
             // Movement 
             Vector2 movementInput = new Vector2();
             movementInput.y -= Raylib.IsKeyDown(KeyboardKey.W);

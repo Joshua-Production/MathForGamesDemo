@@ -32,6 +32,7 @@ namespace MathForGamesDemo
         {
             base.Update(deltaTime);
             Raylib.DrawCircleV(_theBoi.Transform.GlobalPositon, 50, Color.Green);
+            
         }
     }
 }
