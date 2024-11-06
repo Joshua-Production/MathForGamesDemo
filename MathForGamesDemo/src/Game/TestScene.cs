@@ -25,6 +25,8 @@ namespace MathForGamesDemo
 
              _theBoi = Actor.Instantiate(new Actor("The Boi"), null, new Vector2(100, 100), 0);
             _theBoi.Collider = new CircleCollider(_theBoi, 50);
+
+            
             
         }
 

@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Raylib_cs;
 
-namespace MathForGamesDemo.src
+namespace MathForGamesDemo
 {
     internal class Game
     {
@@ -83,10 +83,10 @@ namespace MathForGamesDemo.src
                 currentTime = stopwatch.ElapsedMilliseconds;
 
                 Raylib.BeginDrawing();
-                Raylib.ClearBackground(Color.White);
+                Raylib.ClearBackground(Color.Beige);
 
                 CurrentScene.Update(deltaTime);
-
+                
                 Raylib.EndDrawing();
 
                  // Calculate DeltaTime
