@@ -14,10 +14,13 @@ namespace MathForGamesDemo
         private bool _started = false;
         private bool _enabled = true;
 
+        // An array that holds components
         private Component[] _components;
 
+        // holds the actors name
         public string Name { get; set; }
 
+        // This is for the actors's position and rotation
         public Transform2D Transform { get; protected set; }
 
         public bool Started { get => _started; }
@@ -41,8 +44,10 @@ namespace MathForGamesDemo
             }
         }
 
+        // collision detection
         public Collider Collider { get; set; }
 
+        // Initializing the actor with a name and setting up its transform and its componenets array
         public Actor(string name = "Actor")
         {
             Name = name;
@@ -50,6 +55,7 @@ namespace MathForGamesDemo
             _components = new Component[0];
         }
 
+        // creates an actor with position and rotation
         public static Actor Instantiate(
             Actor actor,
             Transform2D parent = null,
@@ -69,6 +75,7 @@ namespace MathForGamesDemo
 
             return actor;
         }
+        // Destroys current actor
         public static void Destroy(Actor actor)
         {
             // Remove all children
@@ -84,7 +91,9 @@ namespace MathForGamesDemo
             Game.CurrentScene.RemoveActor(actor);
 
         }
+        // this is called when the actor is enabled
         public virtual void OnEnable() { }
+        // this is called when the actor is disabled
         public virtual void OnDisable() { }
 
         public virtual void Start()
@@ -117,6 +126,7 @@ namespace MathForGamesDemo
         
         }
 
+        // collision with another acto
         public virtual void OnCollision(Actor other) { }
 
         // Add component
@@ -140,11 +150,12 @@ namespace MathForGamesDemo
             return null;
         }
 
-
-        public T AddComponent<T>() where T : Component
+        // add a new component of type T 
+        public T AddComponent<T>() where T : Component, new()
         {
 
-            T component = (T)new Component(this);
+            T component = new T();
+            component.Owner = this;
             return AddComponent(component);
         }
 
@@ -192,6 +203,7 @@ namespace MathForGamesDemo
             return componentRemoved;
         }
 
+        // remove a component of T
         public bool RemoveComponent<T>() where T : Component
         {
             T component = GetComponent<T>();
@@ -199,7 +211,7 @@ namespace MathForGamesDemo
                 return RemoveComponent(component);
             return false;
         }
-        // Get component
+        // Get a specific component from T
         public T GetComponent<T>() where T : Component
         {
             foreach (Component component in _components)
@@ -209,7 +221,7 @@ namespace MathForGamesDemo
             }
             return null;
         }
-        // Get components
+        // Get all components from T
         public T[] GetComponents<T>() where T : Component
         {
             // Create a temp array of the same size as _components

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MathForGamesDemo.src.Engine.Components;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -28,6 +29,8 @@ namespace MathForGamesDemo
         public virtual void Start()
         {
             _actors = new List<Actor>();
+           // Actor bob = new Actor("Bob");
+           // bob.AddComponent<HealthComponent>();
         }
         public virtual void Update(double deltaTime)
         {
