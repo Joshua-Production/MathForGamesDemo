@@ -19,14 +19,7 @@ namespace MathForGamesDemo
             base.Start();
 
             // Add our cool actor
-            Actor actor = new TankBottom();
-            actor.Transform.LocalPosition = new Vector2(200, 200);
-            AddActor(actor);
-            actor.Collider = new CircleCollider(actor, 60);
-
-             _tankBottom = Actor.Instantiate(new Actor("Bottom"), null, new Vector2(100, 100), 0);
-            _tankBottom.Collider = new CircleCollider(_tankBottom, 50);
-
+            Actor _tankBottom = Actor.Instantiate(new TankBottom(), null, new Vector2(200,200),0 );
             
             
         }

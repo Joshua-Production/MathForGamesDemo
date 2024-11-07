@@ -14,7 +14,8 @@ namespace MathForGamesDemo
     {
         // set the speed
         public float Speed { get; set; } = 50;
-       
+
+        public float tankScale = 50 ;
         public float RotationSpeed { get; set; } = 5;
 
         private Color _color = Color.Blue;
@@ -24,35 +25,39 @@ namespace MathForGamesDemo
             // call the base class Update method to ensure any parent functionality is executed
             base.Update(deltaTime);
 
+            // Calling the Movement function
+            Movement(deltaTime);
+
+
+
+
+            // Make a new Rectangle give it its Position and Scale multiply it by 10 to make it bigger
+            Rectangle rec = new Rectangle(Transform.LocalPosition, Transform.GlobalScale * tankScale);
+
+            // Draw rec create a new Vector2 for setting the origin give it its rotation and color
             
-            // Movement 
-            Vector2 movementInput = new Vector2();
-            // Forward
-            movementInput.y -= Raylib.IsKeyDown(KeyboardKey.W);
-
-            // Backward
-            movementInput.y += Raylib.IsKeyDown(KeyboardKey.S);
-
-            if (Raylib.IsKeyDown(KeyboardKey.A))
-            { Transform.Rotate(RotationSpeed); }
-
-            movementInput.x += Raylib.IsKeyDown(KeyboardKey.D);
-
-            // calculate the delta movement vector based on the normalized input and speed
-            Vector2 deltaMovement = movementInput.Normalized * Speed * (float)deltaTime;
-
-            // if there is any movement translate the actors position
-            if (deltaMovement.Magnitude !=0)
-            Transform.Translate(deltaMovement);
-
-            Rectangle rec = new Rectangle();
-            Raylib.DrawRectanglePro(rec, Transform.GlobalPositon, Transform.GlobalScale.x / 2 * 100, _color);
+            Raylib.DrawRectanglePro(rec, new Vector2 (tankScale/2, tankScale/2)  , (float)(Transform.LocalRotationAngle * 180 / Math.PI),   _color );
+            Raylib.DrawLineV(Transform.GlobalPositon, Transform.GlobalPositon + Transform.Forward * 30, _color);
         }
 
         // override the OnCollision method to handle collision with other actors
         public override void OnCollision(Actor other)
         {
             _color = Color.Red;
+        }
+        public void Movement(double deltaTime)
+        {
+            if (Raylib.IsKeyDown(KeyboardKey.W))
+                Transform.Translate(Transform.Forward * Speed *   (float)deltaTime);
+
+            if (Raylib.IsKeyDown(KeyboardKey.S))
+                Transform.Translate(Transform.Forward * Speed * -1 * (float)deltaTime);
+
+            if (Raylib.IsKeyDown(KeyboardKey.A))
+                Transform.Rotate(RotationSpeed * -1 *(float)deltaTime);
+
+            if (Raylib.IsKeyDown(KeyboardKey.D))
+                Transform.Rotate(RotationSpeed *  (float)deltaTime);
         }
     }
 }
