@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 using System.Linq;
 using System.Numerics;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,33 +12,18 @@ namespace MathForGamesDemo
 {
     internal class Bullet : Actor
     {
-        float bulletSpeed;
-
-        Bullet(Vector2 x, Vector2 y)
+        public float Speed { get; set; } = 1500;
+        public void Move(double deltaTime)
         {
 
-            bulletSpeed = 10;
-        }
-
-
-
-
-        //private Vector2
-        //public override void Update(double deltaTime)
-        //{
-        //    // Calling the Movement function
+            Transform.Translate(Transform.Forward* Speed * (float) deltaTime);
 
 
 
 
 
 
-        //    base.Update(deltaTime);
-        //    if (Raylib.IsKeyPressed(KeyboardKey.Space))
-        //    {
-                
-        //    }
 
-        }
     }
+}
 
