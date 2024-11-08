@@ -21,7 +21,7 @@ namespace MathForGamesDemo
         public string Name { get; set; }
 
         // This is for the actors's position and rotation
-        public Transform2D Transform { get; protected set; }
+        public Transform2D Transform { get; set; }
 
         public bool Started { get => _started; }
         public bool Enabled
@@ -100,6 +100,7 @@ namespace MathForGamesDemo
         {
             _started = true;
 
+            Transform.UpdateTransforms();
         }
 
         public virtual void Update(double deltaTime) 

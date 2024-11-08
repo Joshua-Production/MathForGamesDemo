@@ -101,7 +101,8 @@ namespace MathForGamesDemo
         {
             // Forward direction based on global matrix
 
-            get { return new Vector2(_globalMatrix.m00, _globalMatrix.m10).Normalized; }
+            get { return new Vector2(_globalMatrix.m00, _globalMatrix.m10).Normalized;  }
+            
         }
 
         // getting the right direction vector

@@ -93,7 +93,7 @@ namespace MathForGamesDemo
                 deltaTime = (currentTime - lastTime) / 1000.0;
                 lastTime = currentTime;
 
-                Console.WriteLine(deltaTime);
+                
             }
 
             CurrentScene.End();

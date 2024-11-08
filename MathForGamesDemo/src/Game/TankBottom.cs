@@ -12,9 +12,15 @@ namespace MathForGamesDemo
 {
     internal class TankBottom : Actor 
     {
-        // set the speed
-        public float Speed { get; set; } = 50;
 
+        //public TankBottom() : base()
+        //{
+            
+        //}
+
+        // set the speed
+        public float Speed { get; set; } = 1500;
+        
         public float tankScale = 50 ;
         public float RotationSpeed { get; set; } = 5;
 
@@ -37,7 +43,7 @@ namespace MathForGamesDemo
             // Draw rec create a new Vector2 for setting the origin give it its rotation and color
             
             Raylib.DrawRectanglePro(rec, new Vector2 (tankScale/2, tankScale/2)  , (float)(Transform.LocalRotationAngle * 180 / Math.PI),   _color );
-            Raylib.DrawLineV(Transform.GlobalPositon, Transform.GlobalPositon + Transform.Forward * 30, _color);
+             Raylib.DrawLineEx(Transform.GlobalPositon, Transform.GlobalPositon + Transform.Forward * -34, 10, Color.DarkBlue);
         }
 
         // override the OnCollision method to handle collision with other actors

@@ -6,32 +6,44 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MathLibrary;
-using Raylib_cs;
+
 
 namespace MathForGamesDemo
 {
     internal class TankTop : Actor
     {
+
+        private Color _color = Color.Blue;
+
+        public float RotationSpeed { get; set; } = 5;
+
+
+        public override void Update(double deltaTime)
+        {
+            // Calling the Movement function
+            Movement(deltaTime);
+
+
+
+
+
+            base.Update(deltaTime);
+            Raylib.DrawLineEx(Transform.GlobalPositon,
+                Transform.GlobalPositon + Transform.Forward * 60, 10.0f,
+                _color);
+
+
+        }
         
 
+        public void Movement(double deltaTime)
+        {
+            if (Raylib.IsKeyDown(KeyboardKey.Left))
+                Transform.Rotate(RotationSpeed * -1 * (float)deltaTime);
 
-        //public override void Update(double deltaTime)
-        //{
-        //    base.Update(deltaTime);
-
-        //    Vector2 movementInput = new Vector2();
-        //    // Forward
-        //    movementInput.y -= Raylib.IsKeyDown(KeyboardKey.W);
-        //    // Backwards
-        //    movementInput.y += Raylib.IsKeyDown(KeyboardKey.S);
-
-        //    // calculate the delta movement vector based on the normalized input and speed
-        //    Vector2 deltaMovement = movementInput.Normalized * Speed * (float)deltaTime;
-
-        //    // if there is any movement translate the actors position
-        //    if (deltaMovement.Magnitude != 0)
-        //        Transform.Translate(deltaMovement);
-
-        //}
+            if (Raylib.IsKeyDown(KeyboardKey.Right))
+                Transform.Rotate(RotationSpeed * (float)deltaTime);
+        }
     }
 }
+

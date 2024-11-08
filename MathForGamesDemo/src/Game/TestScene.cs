@@ -20,14 +20,14 @@ namespace MathForGamesDemo
 
             // Add our cool actor
             Actor _tankBottom = Actor.Instantiate(new TankBottom(), null, new Vector2(200,200),0 );
-            
+            Actor _tankTop = Actor.Instantiate(new TankTop(), _tankBottom.Transform);
             
         }
 
         public override void Update(double deltaTime)
         {
             base.Update(deltaTime);
-            
+
             
         }
     }
