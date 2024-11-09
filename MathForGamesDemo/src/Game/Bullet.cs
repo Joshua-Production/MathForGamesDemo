@@ -3,27 +3,44 @@ using System;
 using System.Collections.Generic;
 
 using System.Linq;
-using System.Numerics;
+
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using MathLibrary;
 
 namespace MathForGamesDemo
 {
     internal class Bullet : Actor
     {
-        public float Speed { get; set; } = 1500;
-        public void Move(double deltaTime)
+        public Vector2 Direction {get; set;}
+        public float Speed { get; set; } = 100f; // speed for the bullet
+       
+        public Bullet(Vector2 position, Vector2 direction)
         {
+            Transform.LocalPosition = position;
+            Direction = direction.Normalized;
+            this.Owner = owner;
+        }
 
-            Transform.Translate(Transform.Forward* Speed * (float) deltaTime);
+        public override void Update(double deltaTime)
+        {
+            Transform.Translate(Direction * Speed * (float)deltaTime);
 
+            base.Update(deltaTime);
+            Raylib.DrawCircleV(Transform.GlobalPositon, 5, Color.White);
+        }
 
-
-
+        
+        
+           
+            
+        
 
 
 
     }
 }
+
+
 

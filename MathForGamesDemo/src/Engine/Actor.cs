@@ -14,6 +14,8 @@ namespace MathForGamesDemo
         private bool _started = false;
         private bool _enabled = true;
 
+        public Actor Owner { get;  set; }
+
         // An array that holds components
         private Component[] _components;
 

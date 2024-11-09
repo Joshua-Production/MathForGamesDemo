@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MathLibrary;
+using System.Buffers;
 
 
 namespace MathForGamesDemo
@@ -16,6 +17,7 @@ namespace MathForGamesDemo
         private Color _color = Color.Blue;
 
         public float RotationSpeed { get; set; } = 5;
+        public float FireRate { get; set; } = 0.5f;
 
 
         public override void Update(double deltaTime)
@@ -44,6 +46,21 @@ namespace MathForGamesDemo
             if (Raylib.IsKeyDown(KeyboardKey.Right))
                 Transform.Rotate(RotationSpeed * (float)deltaTime);
         }
+
+        public void ShootBullet()
+        {
+
+            Vector2 spawnPosition = Transform.GlobalPositon + Transform.Forward * 60;
+            Vector2 shootDirection = Transform.Forward;
+
+            Bullet newbullet = new Bullet(spawnPosition, shootDirection);
+            
+
+        }
+
+
+
+
     }
 }
 
