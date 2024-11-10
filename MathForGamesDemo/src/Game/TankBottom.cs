@@ -13,10 +13,7 @@ namespace MathForGamesDemo
     internal class TankBottom : Actor 
     {
 
-        //public TankBottom() : base()
-        //{
-            
-        //}
+        
 
         // set the speed
         public float Speed { get; set; } = 1500;

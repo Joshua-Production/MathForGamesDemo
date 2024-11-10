@@ -16,11 +16,11 @@ namespace MathForGamesDemo
         public Vector2 Direction {get; set;}
         public float Speed { get; set; } = 100f; // speed for the bullet
        
-        public Bullet(Vector2 position, Vector2 direction)
+        public Bullet(Vector2 position, Vector2 direction) 
         {
             Transform.LocalPosition = position;
             Direction = direction.Normalized;
-            this.Owner = owner;
+            
         }
 
         public override void Update(double deltaTime)

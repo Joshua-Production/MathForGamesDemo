@@ -30,13 +30,20 @@ namespace MathForGamesDemo
 
 
             base.Update(deltaTime);
+
             Raylib.DrawLineEx(Transform.GlobalPositon,
-                Transform.GlobalPositon + Transform.Forward * 60, 10.0f,
+             Transform.GlobalPositon + Transform.Forward * 60, 10.0f,
                 _color);
 
+            // Fire a bullet when the space bar is pressed
+            if (Raylib.IsKeyPressed(KeyboardKey.Space))
+            {
+                ShootBullet();
+            }
 
         }
-        
+
+
 
         public void Movement(double deltaTime)
         {
@@ -49,12 +56,14 @@ namespace MathForGamesDemo
 
         public void ShootBullet()
         {
-
+            // Calculating the spawn position for the bullet 
             Vector2 spawnPosition = Transform.GlobalPositon + Transform.Forward * 60;
-            Vector2 shootDirection = Transform.Forward;
 
-            Bullet newbullet = new Bullet(spawnPosition, shootDirection);
-            
+            // Create a new bullet that spawns in front of the tank, moving in the direction the tank is facing
+            Bullet newBullet = new Bullet(spawnPosition, Transform.Forward);
+
+            // Add the bullet as a child of the tank (or to the world, if you're using a global scene system)
+            Game.CurrentScene.AddActor(newBullet);
 
         }
 
@@ -63,4 +72,5 @@ namespace MathForGamesDemo
 
     }
 }
+
 
