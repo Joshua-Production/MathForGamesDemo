@@ -15,7 +15,7 @@ namespace MathForGamesDemo
     internal class TestScene : Scene
     {
         Actor _tankBottom;
-        Actor _theBoi;
+        
         public override void Start()
         {
             base.Start();

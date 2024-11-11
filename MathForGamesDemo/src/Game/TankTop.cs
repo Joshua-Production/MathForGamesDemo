@@ -33,12 +33,7 @@ namespace MathForGamesDemo
              Transform.GlobalPositon + Transform.Forward * 60, 10.0f,
                 _color);
 
-            // Fire a bullet when the space bar is pressed
-            if (Raylib.IsKeyPressed(KeyboardKey.Space))
-            {
-                ShootBullet();
-            }
-
+           
         }
 
 
@@ -50,6 +45,10 @@ namespace MathForGamesDemo
 
             if (Raylib.IsKeyDown(KeyboardKey.Right))
                 Transform.Rotate(RotationSpeed * (float)deltaTime);
+
+            if (Raylib.IsKeyPressed(KeyboardKey.Space))
+                
+
         }
 
     }
