@@ -16,14 +16,15 @@ namespace MathForGamesDemo
         public void Move(double deltaTime)
         {
 
-            Transform.Translate(Transform.Forward* Speed * (float) deltaTime);
+            Transform.Translate(Transform.Forward * Speed * (float)deltaTime);
+
+           
 
 
 
 
 
-
-
+        }
     }
 }
 
