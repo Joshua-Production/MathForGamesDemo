@@ -28,13 +28,20 @@ namespace MathForGamesDemo
 
 
             base.Update(deltaTime);
+
             Raylib.DrawLineEx(Transform.GlobalPositon,
-                Transform.GlobalPositon + Transform.Forward * 60, 10.0f,
+             Transform.GlobalPositon + Transform.Forward * 60, 10.0f,
                 _color);
 
+            // Fire a bullet when the space bar is pressed
+            if (Raylib.IsKeyPressed(KeyboardKey.Space))
+            {
+                ShootBullet();
+            }
 
         }
-        
+
+
 
         public void Movement(double deltaTime)
         {
@@ -44,6 +51,8 @@ namespace MathForGamesDemo
             if (Raylib.IsKeyDown(KeyboardKey.Right))
                 Transform.Rotate(RotationSpeed * (float)deltaTime);
         }
+
     }
 }
+
 

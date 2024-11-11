@@ -12,9 +12,7 @@ namespace MathForGamesDemo
 {
     internal class Bullet : Actor
     {
-        public float Speed { get; set; } = 1500;
-        public void Move(double deltaTime)
-        {
+
 
             Transform.Translate(Transform.Forward * Speed * (float)deltaTime);
 
