@@ -14,15 +14,16 @@ namespace MathForGamesDemo
 {
     internal class TestScene : Scene
     {
-        Actor _tankBottom;
+        
         
         public override void Start()
         {
             base.Start();
-
+            
             
             // Add our cool actor
             Actor _tankBottom = Actor.Instantiate(new TankBottom(), null, new Vector2(200,200),0 );
+            _tankBottom.Collider = new CircleCollider(_tankBottom, 35);
             Actor _tankTop = Actor.Instantiate(new TankTop(), _tankBottom.Transform);
             
 

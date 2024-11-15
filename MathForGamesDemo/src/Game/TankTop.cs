@@ -15,7 +15,7 @@ namespace MathForGamesDemo
 
         private Color _color = Color.Blue;
 
-        public float RotationSpeed { get; set; } = 5;
+        public float RotationSpeed { get; set; } = 10;
 
 
         public override void Update(double deltaTime)
@@ -23,17 +23,20 @@ namespace MathForGamesDemo
             // Calling the Movement function
             Movement(deltaTime);
 
-
+            // Calling the Shoot function
+            Shoot(deltaTime);
+            
 
 
 
             base.Update(deltaTime);
 
+            // Draw the Turret
             Raylib.DrawLineEx(Transform.GlobalPositon,
-             Transform.GlobalPositon + Transform.Forward * 60, 10.0f,
+             Transform.GlobalPositon + Transform.Forward * 60, 20.0f,
                 _color);
 
-           
+
         }
 
 
@@ -46,9 +49,23 @@ namespace MathForGamesDemo
             if (Raylib.IsKeyDown(KeyboardKey.Right))
                 Transform.Rotate(RotationSpeed * (float)deltaTime);
 
-            if (Raylib.IsKeyPressed(KeyboardKey.Space))
-                
 
+
+
+        }
+
+        public void Shoot(double deltaTime)
+        {
+            
+
+            if (Raylib.IsKeyPressed(KeyboardKey.Space))
+            {
+                Vector2 offset = new Vector2(Transform.GlobalPositon.x * 1.4f, Transform.GlobalPositon.y);
+                Actor.Instantiate(new Bullet(), null, 
+                    Transform.GlobalPositon, Transform.GlobalRotationAngle * -1, 
+                    "bullet");
+                
+            }
         }
 
     }
