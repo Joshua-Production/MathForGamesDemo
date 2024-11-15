@@ -15,7 +15,7 @@ namespace MathForGamesDemo
 
         private Color _color = Color.Blue;
 
-        public float RotationSpeed { get; set; } = 10;
+        public float RotationSpeed { get; set; } = 7;
 
 
         public override void Update(double deltaTime)

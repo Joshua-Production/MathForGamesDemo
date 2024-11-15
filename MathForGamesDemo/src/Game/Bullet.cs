@@ -12,7 +12,7 @@ namespace MathForGamesDemo
     internal class Bullet : Actor
     {
         public float bulletSize = 10f;
-        public float Speed { get; set; } = 350;
+        public float Speed { get; set; } = 1000;
         public override void Start()
         {
             base.Start();

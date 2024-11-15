@@ -62,8 +62,9 @@ namespace MathForGamesDemo
 
         public void Run()
         {
+            
 
-            Raylib.InitWindow(800, 480, "Hello World");
+            Raylib.InitWindow(1920, 1080, "Hello World");
             Raylib.SetWindowMonitor(1);
 
             // Timing
