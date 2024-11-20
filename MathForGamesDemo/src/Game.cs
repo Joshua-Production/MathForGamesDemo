@@ -74,8 +74,12 @@ namespace MathForGamesDemo
             double deltaTime = 1;
             long lastTime = 0;
 
+            // Making new scenes
+            Scene StartScene = new StartScene();
             Scene testScene = new TestScene();
-            
+
+            // Adding the scenes
+            AddScene(StartScene);
             AddScene(testScene);
             
             

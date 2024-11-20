@@ -14,6 +14,8 @@ namespace MathForGamesDemo
     {
 
         private Color _color = Color.Blue;
+        
+
 
         public float RotationSpeed { get; set; } = 2;
 
@@ -36,7 +38,7 @@ namespace MathForGamesDemo
              Transform.GlobalPositon + Transform.Forward * 60, 20.0f,
                 _color);
 
-
+           
         }
 
 
