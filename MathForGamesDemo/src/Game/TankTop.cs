@@ -15,7 +15,7 @@ namespace MathForGamesDemo
 
         private Color _color = Color.Blue;
 
-        public float RotationSpeed { get; set; } = 7;
+        public float RotationSpeed { get; set; } = 2;
 
 
         public override void Update(double deltaTime)
@@ -60,7 +60,7 @@ namespace MathForGamesDemo
 
             if (Raylib.IsKeyPressed(KeyboardKey.Space))
             {
-                Vector2 offset = new Vector2(Transform.GlobalPositon.x * 1.4f, Transform.GlobalPositon.y);
+                
                 Actor.Instantiate(new Bullet(), null, 
                     Transform.GlobalPositon, Transform.GlobalRotationAngle * -1, 
                     "bullet");

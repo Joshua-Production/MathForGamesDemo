@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MathForGamesDemo
 {
-    internal class Actor
+    internal class Actor 
     {
 
         private bool _started = false;

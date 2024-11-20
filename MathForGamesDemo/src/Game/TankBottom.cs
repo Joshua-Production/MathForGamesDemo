@@ -10,16 +10,16 @@ using Raylib_cs;
 
 namespace MathForGamesDemo
 {
-    internal class TankBottom : Actor 
+    internal class TankBottom : Actor
     {
 
-       
+
 
         // set the speed
-        public float Speed { get; set; } = 1500;
-        
-        public float tankScale = 50 ;
-        public float RotationSpeed { get; set; } = 5;
+        public float Speed { get; set; } = 400;
+
+        public float tankScale = 50;
+        public float RotationSpeed { get; set; } = 2;
 
         private Color _color = Color.Blue;
         // override the update to handle movement and drawing for the actor
@@ -34,13 +34,30 @@ namespace MathForGamesDemo
 
 
 
+
             // Make a new Rectangle give it its Position and Scale multiply it by 10 to make it bigger
             Rectangle rec = new Rectangle(Transform.LocalPosition, Transform.GlobalScale * tankScale);
 
             // Draw rec create a new Vector2 for setting the origin give it its rotation and color
+
+            Raylib.DrawRectanglePro(rec, new Vector2(tankScale / 2, tankScale / 2), (float)(Transform.LocalRotationAngle * 180 / Math.PI), _color);
+            Raylib.DrawLineEx(Transform.GlobalPositon, Transform.GlobalPositon + Transform.Forward * -34, 10, Color.DarkBlue);
             
-            Raylib.DrawRectanglePro(rec, new Vector2 (tankScale/2, tankScale/2)  , (float)(Transform.LocalRotationAngle * 180 / Math.PI),   _color );
-             Raylib.DrawLineEx(Transform.GlobalPositon, Transform.GlobalPositon + Transform.Forward * -34, 10, Color.DarkBlue);
+
+            // Moving player back to spawn 
+            if (Transform.LocalPosition.x > Raylib.GetScreenWidth() ||
+                 Transform.LocalPosition.y > Raylib.GetScreenHeight())
+
+            {
+
+            }
+
+            if (Transform.LocalPosition.x <= 0 ||
+                 Transform.LocalPosition.y <= 0)
+
+            {
+
+            }
         }
 
         // override the OnCollision method to handle collision with other actors
@@ -51,16 +68,16 @@ namespace MathForGamesDemo
         public void Movement(double deltaTime)
         {
             if (Raylib.IsKeyDown(KeyboardKey.W))
-                Transform.Translate(Transform.Forward * Speed *   (float)deltaTime);
+                Transform.Translate(Transform.Forward * Speed * (float)deltaTime);
 
             if (Raylib.IsKeyDown(KeyboardKey.S))
                 Transform.Translate(Transform.Forward * Speed * -1 * (float)deltaTime);
 
             if (Raylib.IsKeyDown(KeyboardKey.A))
-                Transform.Rotate(RotationSpeed * -1 *(float)deltaTime);
+                Transform.Rotate(RotationSpeed * -1 * (float)deltaTime);
 
             if (Raylib.IsKeyDown(KeyboardKey.D))
-                Transform.Rotate(RotationSpeed *  (float)deltaTime);
+                Transform.Rotate(RotationSpeed * (float)deltaTime);
         }
     }
 }

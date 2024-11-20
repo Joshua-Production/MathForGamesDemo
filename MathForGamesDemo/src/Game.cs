@@ -64,7 +64,7 @@ namespace MathForGamesDemo
         {
             
 
-            Raylib.InitWindow(1920, 1080, "Hello World");
+            Raylib.InitWindow(540, 960, "Hello World");
             Raylib.SetWindowMonitor(1);
 
             // Timing
@@ -75,6 +75,7 @@ namespace MathForGamesDemo
             long lastTime = 0;
 
             Scene testScene = new TestScene();
+            
             AddScene(testScene);
             
             
