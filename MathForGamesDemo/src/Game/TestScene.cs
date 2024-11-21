@@ -26,7 +26,7 @@ namespace MathForGamesDemo
             Actor _tankTop = Actor.Instantiate(new TankTop(), _tankBottom.Transform);
 
            
-
+            // Adding all the enemy tanks
             Actor _EnemyTank1 = Actor.Instantiate(new EnemyTanks(4), null,new Vector2(509, 651), 0f);
             _EnemyTank1.Collider = new CircleCollider(_EnemyTank1, 35);
             Actor _EnemyTank2 = Actor.Instantiate(new EnemyTanks(3), null,new Vector2(30, 507), 34.56f);
