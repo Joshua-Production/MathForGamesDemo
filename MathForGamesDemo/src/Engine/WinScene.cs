@@ -21,7 +21,9 @@ namespace MathForGamesDemo
         {
             base.Update(deltaTime);
             Game.CurrentScene = Game.GetScene(3);
-            Raylib.DrawText("YOU WIN", 520, 50, 40, Color.Magenta);
+            Raylib.DrawText("YOU WIN", 120, 50, 70, Color.Magenta);
+            Raylib.DrawText("Press Enter to go to main menu", 20, 200, 30, Color.Magenta);
+            Raylib.DrawText("Press Esc key to close game", 20, 300, 30, Color.Magenta);
             if (Raylib.IsKeyPressed(KeyboardKey.Enter) || (Raylib.IsKeyPressed(KeyboardKey.KpEnter)))
             {
                 Game.CurrentScene = Game.GetScene(0);
