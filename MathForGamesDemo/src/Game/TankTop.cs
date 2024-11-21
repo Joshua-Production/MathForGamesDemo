@@ -63,10 +63,10 @@ namespace MathForGamesDemo
             if (Raylib.IsKeyPressed(KeyboardKey.Space))
             {
                 
-                Actor.Instantiate(new Bullet(), null, 
+               Actor _bullet = Actor.Instantiate(new Bullet(), null, 
                     Transform.GlobalPositon, Transform.GlobalRotationAngle * -1, 
                     "bullet");
-                
+                _bullet.Collider = new CircleCollider(_bullet, 10);
             }
         }
 

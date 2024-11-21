@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -12,7 +13,7 @@ namespace MathForGamesDemo
 {
     internal class EnemyTanks : Actor
     {
-
+        
         private float _baseFireRate;
         // Making a private variable for fire rate
         private float _fireRate = 1;
@@ -53,15 +54,35 @@ namespace MathForGamesDemo
             if (Math.Truncate(_fireRate) == 0)
             {
 
-                Actor.Instantiate(new EnemyBullet(), null,
+              Actor _enemyBullet = Actor.Instantiate(new EnemyBullet(), null,
                     Transform.GlobalPositon, Transform.LocalRotationAngle,
                     "bullet");
+                _enemyBullet.Collider = new CircleCollider(_enemyBullet, 10);
                 _fireRate = _baseFireRate;
             }
 
 
 
         }
+
+        // override the OnCollision method to handle collision with other actors
+        public override void OnCollision(Actor other)
+        {
+            if (other is EnemyBullet)
+            {
+                return;
+            }
+            if (other is TankBottom)
+            {
+                Game.CurrentScene = Game.GetScene(2);
+            }
+
+            else if (other is Bullet)
+            { 
+               Game.CurrentScene.RemoveActor(this);
+            }
+        }
+
         public override void End()
         {
             base.End();

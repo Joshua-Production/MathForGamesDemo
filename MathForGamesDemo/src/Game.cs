@@ -77,10 +77,15 @@ namespace MathForGamesDemo
             // Making new scenes
             Scene StartScene = new StartScene();
             Scene testScene = new TestScene();
+            Scene deathScene = new DeathScene();
+            Scene winScene = new WinScene();
 
             // Adding the scenes
             AddScene(StartScene);
             AddScene(testScene);
+            AddScene(deathScene);
+            AddScene(winScene);
+
             
             
 

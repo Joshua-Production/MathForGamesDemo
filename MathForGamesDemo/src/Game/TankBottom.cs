@@ -16,12 +16,13 @@ namespace MathForGamesDemo
 
 
         // set the speed
-        public float Speed { get; set; } = 400;
+        public float Speed { get; set; } = 200;
 
         public float tankScale = 50;
         public float RotationSpeed { get; set; } = 2;
 
-        private Color _color = Color.Blue;
+
+        public Color _color = Color.Blue;
         // override the update to handle movement and drawing for the actor
         public override void Update(double deltaTime)
         {
@@ -42,28 +43,45 @@ namespace MathForGamesDemo
 
             Raylib.DrawRectanglePro(rec, new Vector2(tankScale / 2, tankScale / 2), (float)(Transform.LocalRotationAngle * 180 / Math.PI), _color);
             Raylib.DrawLineEx(Transform.GlobalPositon, Transform.GlobalPositon + Transform.Forward * -34, 10, Color.DarkBlue);
-            
 
-            // Moving player back to spawn 
-            if (Transform.LocalPosition.x > Raylib.GetScreenWidth() ||
-                 Transform.LocalPosition.y > Raylib.GetScreenHeight())
 
+
+            if (Transform.LocalPosition.x > Raylib.GetScreenWidth() || Transform.LocalPosition.y > Raylib.GetScreenHeight())
             {
+
+                Game.CurrentScene = Game.GetScene(1);
 
             }
 
-            if (Transform.LocalPosition.x <= 0 ||
-                 Transform.LocalPosition.y <= 0)
 
+            if (Transform.LocalPosition.x <= 0 || Transform.LocalPosition.y <= 0)
             {
+                Game.CurrentScene = Game.GetScene(1);
 
+
+            }
+            else if (Transform.LocalPosition.y <= 20)
+            {
+                Game.CurrentScene = Game.GetScene(3);
             }
         }
 
         // override the OnCollision method to handle collision with other actors
         public override void OnCollision(Actor other)
         {
-            _color = Color.Red;
+            if (other is Bullet)
+            {
+                return;
+            }
+            if (other is EnemyTanks)
+            {
+                Game.CurrentScene = Game.GetScene(2);
+            }
+
+            else if (other is EnemyBullet)
+            {
+                Game.CurrentScene = Game.GetScene(2);
+            }
         }
         public void Movement(double deltaTime)
         {
