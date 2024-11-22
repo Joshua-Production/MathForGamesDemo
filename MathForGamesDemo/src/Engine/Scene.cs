@@ -12,39 +12,44 @@ namespace MathForGamesDemo
     {
 
         private List<Actor> _actors;
-
+        private List<Actor> _actorsToBeRemoved;
         
 
         public void AddActor(Actor actor)
         {
             if (!_actors.Contains(actor))
-            _actors.Add(actor);
+            {
+               _actors.Add(actor);
+            }
 
         }
         public bool RemoveActor(Actor actor)
         {
-            return _actors.Remove(actor);
+            AddToRemoveActor(actor);
+            return true;
         }
 
         public virtual void Start()
         {
             _actors = new List<Actor>();
-           // Actor bob = new Actor("Bob");
-           // bob.AddComponent<HealthComponent>();
+            _actorsToBeRemoved = new List<Actor>();
         }
         public virtual void Update(double deltaTime)
         {
             // Update actors
             for (int i = 0; i < _actors.Count; i++)
             {
-                Actor actor = _actors[i];
+                if (!_actors[i].Started)
+                {
+                    _actors[i].Start();
+                }
+                _actors[i].Update(deltaTime);
 
-                if (!actor.Started)
-                    actor.Start();
-
-                actor.Update(deltaTime);
-                if (actor.Collider != null)
-                    actor.Collider.Draw();
+                
+                if (_actors[i].Collider != null)
+                {
+                    _actors[i].Collider.Draw();
+                }
             }
 
             // Check for collision
@@ -54,7 +59,10 @@ namespace MathForGamesDemo
                 {
                     // Don't check collision against self
                     if (row == column)
+                    {
                         continue;
+                    }
+
                     // If both colliders are valid
                     if (_actors[row].Collider != null && _actors[column].Collider != null)
                     {
@@ -68,6 +76,7 @@ namespace MathForGamesDemo
 
                 }
             }
+            ActorToBeRemoved();
         }
 
         public virtual void End()
@@ -77,5 +86,32 @@ namespace MathForGamesDemo
                 actor.End();
             }
         }
+
+        private bool AddToRemoveActor(Actor actor)
+        {
+            _actorsToBeRemoved.Add(actor);
+            return true;
+        }
+
+        private void ActorToBeRemoved()
+        {
+            for (int i = 0; i < _actors.Count; i++)
+            {
+                if (_actorsToBeRemoved.Contains(_actors[i]))
+                {
+                    _actors.Remove(_actors[i]);
+                }
+            }
+
+            _actorsToBeRemoved.Clear();
+            _actors.TrimExcess();
+            _actorsToBeRemoved.TrimExcess();
+
+
+
+        }
+
+
+
     }
 }
