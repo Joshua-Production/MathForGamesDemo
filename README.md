@@ -1,4 +1,11 @@
 # MathForGamesDemo
+To download this game go to https://github.com/Joshua-Production/MathForGamesDemo 
+Click the release then download the CrossFire_v1.0.zip 
+Unzip it then open the folder 
+Click the MathForGamesDemo.exe
+
+# Enjoy
+
 
 
 # CrossFire
