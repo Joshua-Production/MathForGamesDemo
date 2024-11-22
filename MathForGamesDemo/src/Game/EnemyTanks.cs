@@ -78,8 +78,11 @@ namespace MathForGamesDemo
             }
 
             else if (other is Bullet)
-            { 
-               Game.CurrentScene.RemoveActor(this);
+            {   // Spawn the Explosion
+                Actor Explosion = Actor.Instantiate(new ExplosionActor(), null, Transform.GlobalPositon, 0, "Explosion");
+                Game.CurrentScene.AddActor(Explosion);  // Add the Explosion to the scene
+
+                Game.CurrentScene.RemoveActor(this);
             }
         }
 
