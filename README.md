@@ -20,3 +20,6 @@ Your controls are listed on the title screen but will also be listed here
 |S|is backwards|
 |A| rotates the bottom of your tank to the left|
 |D| rotates the bottom of your tank to the right|
+|Left Arrow| rotates the top of your tank to the left|
+|Right Arrow| rotates the top of your tank to the right|
+|Space Bar|Shoots a bullet|
